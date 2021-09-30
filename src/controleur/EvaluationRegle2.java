@@ -12,7 +12,11 @@ import model.Joueur;
  *
  * @author HKass
  */
-public interface Evaluation {
+public class EvaluationRegle2 implements Evaluation{
+
+    @Override
+    public Joueur evaluerGagnant(List<Joueur> joueurs) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
-    public Joueur evaluerGagnant(List<Joueur> joueurs) ;
 }
