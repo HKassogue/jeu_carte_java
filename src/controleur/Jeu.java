@@ -10,6 +10,7 @@ import java.util.List;
 import model.Carte;
 import model.Joueur;
 import model.Paquet;
+import vue.Vue;
 
 /**
  *
@@ -150,10 +151,4 @@ public class Jeu {
             vue.faireUnTruc();
         }
     }
-}
-
-class Vue {
-    public void faireUnTruc() { }; 
- 
-    public void setControlleur(Jeu jeu) { }; 
 }
