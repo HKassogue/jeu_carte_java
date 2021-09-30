@@ -10,17 +10,16 @@ package model;
  * @author HKass
  */
 public class Carte {
-    private TypeCarte type;
+    private Type type;
     private Valeur valeur;
-    boolean cache;
+    private boolean cache;
 
-    public Carte(TypeCarte type, Valeur valeur) {
+    public Carte(Type type, Valeur valeur) {
         this.type = type;
         this.valeur = valeur;
-        cache = true;
     }
 
-    public TypeCarte getType() {
+    public Type getType() {
         return type;
     }
 

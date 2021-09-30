@@ -9,15 +9,15 @@ package model;
  *
  * @author HKass
  */
-public enum TypeCarte {
-    TREFLE(1),
-    PIQUE(2),
-    COEUR(3),
-    CARREAU(4);
+public enum Type {
+    CARREAU(1),
+    COEUR(2),
+    PIQUE(3),
+    TREFLE(4);
     
     int type;
 
-    private TypeCarte(int type) {
+    private Type(int type) {
         this.type = type;
     }
 

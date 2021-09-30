@@ -15,11 +15,11 @@ import java.util.Random;
  * @author HKass
  */
 public class Paquet {
-    List<Carte> cartes;
+    private List<Carte> cartes;
 
     public Paquet() {
         cartes = new ArrayList<>();
-        for(TypeCarte type : TypeCarte.values()){
+        for(Type type : Type.values()){
             for(Valeur valeur : Valeur.values()){
                 System.out.println("Creation carte ["+type+"]["+valeur+"]");
                 cartes.add(new Carte(type, valeur));
