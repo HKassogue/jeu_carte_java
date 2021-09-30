@@ -33,8 +33,10 @@ public class Jeu {
     EtatJeu etat;
     
     Vue vue;
+    
+    Evaluation evaluation;
 
-    public Jeu(Paquet paquet, Vue vue) {
+    public Jeu(Paquet paquet, Vue vue, Evaluation evaluation) {
         this.paquet = paquet;
         joueurs = new ArrayList<>(); 
         
@@ -42,6 +44,8 @@ public class Jeu {
         this.vue = vue;
         etat = EtatJeu.AjoutJoueurs; 
         vue.setControlleur(this); 
+        
+        this.evaluation = evaluation;
     }
     
     public void ajouterJoueur(String nom) { 
@@ -99,7 +103,7 @@ public class Jeu {
     }
     
     public void evaluerGagnant() {
-        gagnant = new Evaluation().evaluerGagnant(joueurs);
+        gagnant = evaluation.evaluerGagnant(joueurs);
     }
     
     public void afficherGagnant() {
