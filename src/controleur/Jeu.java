@@ -17,14 +17,32 @@ import model.Paquet;
 public class Jeu {
     private Paquet paquet; 
     List<Joueur> joueurs;
+    
+    Joueur gagnant;
+    
+    enum EtatJeu {
+        AjoutJoueurs,
+        JoueursAjoutes,
+        CartesDistribuees, 
+        GagnantRevele,
+        Arrete;
+    }
+    EtatJeu etat;
+    
+    Vue vue;
 
-    public Jeu(Paquet paquet) {
+    public Jeu(Paquet paquet, Vue vue) {
         this.paquet = paquet;
         joueurs = new ArrayList<>(); 
+        
+        gagnant = null;
+        this.vue = vue;
+        etat = EtatJeu.AjoutJoueurs; 
+        vue.setControlleur(this); 
     }
     
     public void ajouterJoueur(String nom) { 
-        joueurs.add(new Joueur(nom));
+        joueurs.add(new Joueur(nom)); 
     }
     
     public Joueur getJoueur(String nom) {
@@ -51,4 +69,10 @@ public class Jeu {
         return paquet;
     }
     
+}
+
+class Vue {
+    public void faireUnTruc() { }; 
+ 
+    public void setControlleur(Jeu jeu) { }; 
 }
