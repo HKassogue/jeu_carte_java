@@ -23,6 +23,7 @@ public class Jeu {
     Joueur gagnant;
     
     enum EtatJeu {
+        Cree,
         AjoutJoueurs,
         JoueursAjoutes,
         CartesDistribuees, 
@@ -73,24 +74,27 @@ public class Jeu {
     
     public void entrerJoueurs() {
         while (etat == EtatJeu.AjoutJoueurs) { 
-            vue.faireUnTruc(); 
+            vue.demandeNomJoueur();
         }
         etat = EtatJeu.JoueursAjoutes;
     }
     
     public void distribuerCartes(){
+        int posJoueur = 1;
         for (Joueur joueur : joueurs) {
             joueur.ajouterCarteMain(paquet.retirer1ereCarte());
-            vue.faireUnTruc();
+            vue.afficherFaceCacheCarteJoueur(posJoueur++, joueur.getNom());
         }
         etat = EtatJeu.CartesDistribuees;
     }
     
     public void retournerCartes(){
+        int posJoueur = 1;
         for (Joueur joueur : joueurs) { 
             Carte carte = joueur.getCarte(0); 
             carte.retourner();
-            vue.faireUnTruc(); 
+            vue.afficherCarteJoueur(posJoueur++, joueur.getNom(),  
+                    carte.getValeur().toString(), carte.getType().toString());  
         } 
     }
     
@@ -120,7 +124,7 @@ public class Jeu {
     }
     
     public void afficherGagnant() {
-        vue.faireUnTruc();
+        vue.afficherGagnant(gagnant.getNom());
         etat = EtatJeu.GagnantRevele;
     }
     
@@ -130,13 +134,15 @@ public class Jeu {
         } 
     }
     
+    public void entreeJoueursTerminee() {
+        etat = EtatJeu.JoueursAjoutes;
+    }
+    
     public void faireUnTour() {
         etat = EtatJeu.AjoutJoueurs;
         paquet.melanger();        
-        entrerJoueurs();
-        vue.faireUnTruc();
         distribuerCartes();
-        vue.faireUnTruc();
+        vue.demandeRetourner();
         retournerCartes();
         vue.faireUnTruc();
         evaluerGagnant();
@@ -146,9 +152,24 @@ public class Jeu {
     }
     
     public void jouer() {
+        if(etat != EtatJeu.Cree) {
+            etat = EtatJeu.AjoutJoueurs;
+            entrerJoueurs();
+            afficherJoueurs();
+        } 
         while(etat != EtatJeu.Arrete) {
             faireUnTour();
-            vue.faireUnTruc();
+            vue.demandeNewJeu();
         }
+    }
+    
+    public void afficherJoueurs(){
+        int pos = 1;
+        for(Joueur joueur : joueurs) 
+            vue.afficherNomJoueur(pos++, joueur.getNom());
+    }
+    
+    public void arreter() {
+        etat = EtatJeu.Arrete;
     }
 }
