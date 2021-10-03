@@ -10,6 +10,7 @@ package model;
  * @author HKass
  */
 public enum Valeur {
+    JOKER(0),
     DEUX(2),
     TROIS(3),
     QUATRE(4),

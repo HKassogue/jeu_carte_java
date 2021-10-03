@@ -10,6 +10,7 @@ package model;
  * @author HKass
  */
 public enum Type {
+    JOKER(0),
     CARREAU(1),
     COEUR(2),
     PIQUE(3),
