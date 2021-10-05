@@ -5,8 +5,10 @@
  */
 package main;
 
+import controleur.EvaluationRegle1;
 import controleur.Jeu;
 import controleur.JeuPaquetNormalGraphiqueRegle1;
+import controleur.JeuPaquetNormalGraphiquesPassivesRegle1;
 import controleur.JeuSingleton;
 
 /**
@@ -23,7 +25,8 @@ public class Main {
         //Jeu jeu = new JeuPaquetNormalCmdRegle1().getJeu();
         Jeu jeu = JeuSingleton.getInstance();
         /*/
-        Jeu jeu = new JeuPaquetNormalGraphiqueRegle1().getJeu();
+        //Jeu jeu = new JeuPaquetNormalGraphiqueRegle1().getJeu();
+        Jeu jeu = new JeuPaquetNormalGraphiquesPassivesRegle1().getJeu();
         //*/
         jeu.jouer();
     }
