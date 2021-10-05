@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.awt.Color;
+
 /**
  *
  * @author HKass
@@ -24,5 +26,15 @@ public enum Type {
 
     public int getType() {
         return type;
+    }
+    
+    public Color getCouleur() {
+        switch(this.toString()){
+            case "CARREAU":
+            case "COEUR": return Color.RED;
+            case "PIQUE":
+            case "TREFLE": return Color.BLACK;
+        }
+        return null;
     }
 }
