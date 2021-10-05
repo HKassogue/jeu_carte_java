@@ -8,6 +8,7 @@ package main;
 import controleur.EvaluationRegle1;
 import controleur.Jeu;
 import model.Paquet;
+import model.PaquetFactory;
 import vue.VueCmd;
 import vue.VueGraphique;
 
@@ -26,7 +27,8 @@ public class Main {
         /*/
         VueGraphique vueG = new VueGraphique();
         vueG.show();
-        Jeu jeu = new Jeu(new Paquet(), vueG, new EvaluationRegle1());
+        //Jeu jeu = new Jeu(new Paquet(), vueG, new EvaluationRegle1());
+        Jeu jeu = new Jeu(PaquetFactory.construirePaquet(PaquetFactory.TypePaquet.Normal), vueG, new EvaluationRegle1());
         //*/
         jeu.jouer();
     }

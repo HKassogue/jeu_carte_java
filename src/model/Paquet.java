@@ -14,18 +14,8 @@ import java.util.Random;
  *
  * @author HKass
  */
-public class Paquet {
-    private List<Carte> cartes;
-
-    public Paquet() {
-        cartes = new ArrayList<>();
-        for(Type type : Type.values()){
-            for(Valeur valeur : Valeur.values()){
-                System.out.println("Creation carte ["+type+"]["+valeur+"]");
-                cartes.add(new Carte(type, valeur));
-            }
-        }
-    }
+public abstract class Paquet {
+    protected List<Carte> cartes;
     
     public void melanger() {
         Random random = new Random();
