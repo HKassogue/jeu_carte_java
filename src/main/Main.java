@@ -7,6 +7,7 @@ package main;
 
 import controleur.Jeu;
 import controleur.JeuPaquetNormalGraphiqueRegle1;
+import controleur.JeuSingleton;
 
 /**
  *
@@ -18,8 +19,9 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        /*
-        Jeu jeu = new JeuPaquetNormalCmdRegle1().getJeu();
+        //*
+        //Jeu jeu = new JeuPaquetNormalCmdRegle1().getJeu();
+        Jeu jeu = JeuSingleton.getInstance();
         /*/
         Jeu jeu = new JeuPaquetNormalGraphiqueRegle1().getJeu();
         //*/
