@@ -5,12 +5,8 @@
  */
 package main;
 
-import controleur.EvaluationRegle1;
 import controleur.Jeu;
-import model.Paquet;
-import model.PaquetFactory;
-import vue.VueCmd;
-import vue.VueGraphique;
+import controleur.JeuPaquetNormalGraphiqueRegle1;
 
 /**
  *
@@ -23,12 +19,9 @@ public class Main {
      */
     public static void main(String[] args) {
         /*
-        Jeu jeu = new Jeu(new Paquet(), new VueCmd(), new EvaluationRegle1());
+        Jeu jeu = new JeuPaquetNormalCmdRegle1().getJeu();
         /*/
-        VueGraphique vueG = new VueGraphique();
-        vueG.show();
-        //Jeu jeu = new Jeu(new Paquet(), vueG, new EvaluationRegle1());
-        Jeu jeu = new Jeu(PaquetFactory.construirePaquet(PaquetFactory.TypePaquet.Normal), vueG, new EvaluationRegle1());
+        Jeu jeu = new JeuPaquetNormalGraphiqueRegle1().getJeu();
         //*/
         jeu.jouer();
     }
