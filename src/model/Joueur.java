@@ -10,8 +10,8 @@ package model;
  * @author HKass
  */
 public class Joueur {
-    private String nom;
-    private Main main;
+    protected String nom;
+    protected Main main;
 
     public Joueur(String nom) {
         this.nom = nom;

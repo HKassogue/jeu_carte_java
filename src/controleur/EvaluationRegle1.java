@@ -8,6 +8,7 @@ package controleur;
 import java.util.List;
 import model.Carte;
 import model.Joueur;
+import model.JoueurGagnant;
 
 /**
  *
@@ -16,9 +17,9 @@ import model.Joueur;
 public class EvaluationRegle1 implements Evaluation{
     @Override
     public Joueur evaluerGagnant(List<Joueur> joueurs) { 
-        Joueur gagnant = null; 
-        int meilleurValeur = -1; 
-        int meilleurType = -1; 
+        JoueurGagnant gagnant = null; 
+        int meilleurValeur = 0; 
+        int meilleurType = 0; 
         for (Joueur joueur : joueurs) { 
             boolean newGagnant = false; 
             if (gagnant == null) newGagnant = true; 
@@ -31,11 +32,11 @@ public class EvaluationRegle1 implements Evaluation{
                         newGagnant = true; 
                 }
             }
-            if (newGagnant) { 
-                gagnant = joueur; 
+            if (newGagnant) {  
                 Carte carte = joueur.getCarte(0); 
                 meilleurValeur = carte.getValeur().getValeur(); 
                 meilleurType = carte.getType().getType(); 
+                gagnant = new JoueurGagnant(joueur, meilleurValeur * meilleurType);
             } 
         } 
         return gagnant;

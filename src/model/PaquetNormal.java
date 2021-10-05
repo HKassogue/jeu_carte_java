@@ -15,10 +15,11 @@ public class PaquetNormal extends Paquet{
     public PaquetNormal() {
         cartes = new ArrayList<>();
         for(Type type : Type.values()){
-            for(Valeur valeur : Valeur.values()){
-                System.out.println("Creation carte ["+type+"]["+valeur+"]");
-                cartes.add(new Carte(type, valeur));
-            }
+            if(!type.toString().equals("JOKER"))
+                for(Valeur valeur : Valeur.values()){
+                    System.out.println("Creation carte ["+type+"]["+valeur+"]");
+                    cartes.add(new Carte(type, valeur));
+                }
         }
     }
 }

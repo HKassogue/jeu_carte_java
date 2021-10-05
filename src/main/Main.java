@@ -19,7 +19,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //*
+        /*
         //Jeu jeu = new JeuPaquetNormalCmdRegle1().getJeu();
         Jeu jeu = JeuSingleton.getInstance();
         /*/
