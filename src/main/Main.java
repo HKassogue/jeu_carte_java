@@ -9,6 +9,7 @@ import controleur.EvaluationRegle1;
 import controleur.Jeu;
 import model.Paquet;
 import vue.VueCmd;
+import vue.VueGraphique;
 
 /**
  *
@@ -20,7 +21,13 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        /*
         Jeu jeu = new Jeu(new Paquet(), new VueCmd(), new EvaluationRegle1());
+        /*/
+        VueGraphique vueG = new VueGraphique();
+        vueG.show();
+        Jeu jeu = new Jeu(new Paquet(), vueG, new EvaluationRegle1());
+        //*/
         jeu.jouer();
     }
     

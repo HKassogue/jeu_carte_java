@@ -42,7 +42,7 @@ public class Jeu {
         
         gagnant = null;
         this.vue = vue;
-        etat = EtatJeu.AjoutJoueurs; 
+        etat = EtatJeu.Cree; 
         vue.setControlleur(this); 
         
         this.evaluation = evaluation;
@@ -121,9 +121,13 @@ public class Jeu {
         etat = EtatJeu.JoueursAjoutes;
     }
     
+    public void melanger() {
+        paquet.melanger();
+        vue.effetMelange();
+    }
+    
     public void faireUnTour() {
-        etat = EtatJeu.AjoutJoueurs;
-        paquet.melanger();        
+        melanger();
         distribuerCartes();
         vue.demandeRetourner();
         retournerCartes();
@@ -135,7 +139,7 @@ public class Jeu {
     }
     
     public void jouer() {
-        if(etat != EtatJeu.Cree) {
+        if(etat == EtatJeu.Cree) {
             etat = EtatJeu.AjoutJoueurs;
             entrerJoueurs();
             afficherJoueurs();

@@ -7,6 +7,8 @@ package vue;
 
 import controleur.Jeu;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -66,4 +68,16 @@ public class VueCmd implements Vue{
     public void afficherCarteJoueur(int i, String nom, String val, String type) {
         System.out.println("["+i+"]["+nom+"]["+val+"]["+type+"]"); 
     }; 
+
+    @Override
+    public void effetMelange() {
+        System.out.println("Le mélange est en cours");
+        for(int i=0; i<10; i++) {
+            System.out.print(".");
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException ex) { }
+        }
+        keyboard.nextLine();
+    }
 }

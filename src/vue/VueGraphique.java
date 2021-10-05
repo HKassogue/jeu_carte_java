@@ -5,19 +5,23 @@
  */
 package vue;
 
+import controleur.Jeu;
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 
 
 /**
  *
  * @author HKass
  */
-public class VueGraphique extends javax.swing.JFrame{
+public class VueGraphique extends javax.swing.JFrame implements Vue{
 
     /**
      * Creates new form VueGraphique
@@ -359,6 +363,116 @@ public class VueGraphique extends javax.swing.JFrame{
         });
     }
     
+    @Override
+    public void faireUnTruc() {
+        
+    }
+
+    @Override
+    public void setControlleur(Jeu jeu) {
+        this.jeu = jeu;
+    }
+
+    @Override
+    public void demandeNomJoueur() {
+        String nom = (String) JOptionPane.showInputDialog(p_melange, 
+                "Entrez le nom du joueur (vide pour terminer)", "Ajout de joueur", 
+                JOptionPane.PLAIN_MESSAGE, null, null, ""); 
+        if(nom==null || nom.isEmpty()) {
+            int termine = JOptionPane.showConfirmDialog(p_melange, 
+                    "Vous confirmez terminer l'ajout?", 
+                    "Ajout de joueur", JOptionPane.YES_NO_OPTION); 
+            if(termine==JOptionPane.YES_OPTION) jeu.entreeJoueursTerminee();
+        }
+        else jeu.ajouterJoueur(nom);
+    }
+
+    @Override
+    public void demandeRetourner() {
+        JOptionPane.showMessageDialog(p_melange, "Tapez OK pour retourner les cartes", 
+                "Retournement des cartes", JOptionPane.INFORMATION_MESSAGE); 
+    }
+
+    @Override
+    public void demandeNewJeu() {
+        int continuer = JOptionPane.showConfirmDialog(p_melange, 
+                    "Voulez-vous continuez un nouveau tour ?", 
+                    "Nouveau tour", JOptionPane.YES_NO_OPTION); 
+        if(continuer==JOptionPane.NO_OPTION) jeu.arreter();
+    }
+
+    @Override
+    public void afficherGagnant(String nom) {
+        gagnant.setText(nom);
+    }
+
+    @Override
+    public void afficherNomJoueur(int pos, String nom) {
+        switch(pos) {
+            case 1: j1.setText(nom); break;
+            case 2: j2.setText(nom); break;
+            case 3: j3.setText(nom); break;
+            case 4: j4.setText(nom); break;
+            case 5: j5.setText(nom); break;
+        }
+    }
+
+    @Override
+    public void afficherFaceCacheCarteJoueur(int i, String nom) {
+        Graphics g; 
+        switch(i) {
+            case 1: g = p_c1.getGraphics(); break;
+            case 2: g = p_c2.getGraphics(); break;
+            case 3: g = p_c3.getGraphics(); break;
+            case 4: g = p_c4.getGraphics(); break;
+            case 5: g = p_c5.getGraphics(); break;
+            default: g = p_c1.getGraphics(); break;
+        }
+        g.drawImage(img_fc, 0, 0, 100, 159, null);
+    }
+
+    @Override
+    public void afficherCarteJoueur(int i, String nom, String val, String type) {
+        Graphics g; 
+        switch(i) {
+            case 1: g = p_c1.getGraphics(); break;
+            case 2: g = p_c2.getGraphics(); break;
+            case 3: g = p_c3.getGraphics(); break;
+            case 4: g = p_c4.getGraphics(); break;
+            case 5: g = p_c5.getGraphics(); break;
+            default: g = p_c1.getGraphics(); break;
+        }
+        switch (type) {
+            case "TREFLE":
+                g.drawImage(img_trefle, 0, 0, 100, 159, this);
+                break;
+            case "PIQUE":
+                g.drawImage(img_pique, 0, 0, 100, 159, this);
+                break;
+            case "CARREAU":
+                g.drawImage(img_carreau, 0, 0, 100, 159, this);
+                break;
+            case "COEUR":
+                g.drawImage(img_coeur, 0, 0, 100, 159, this);
+                break;
+            default:
+                g.drawImage(img_joker, 0, 0, 100, 159, this);
+                break;
+        }
+        g.setColor(Color.yellow);
+        g.drawString(val, 10, 80);
+    }
+
+    @Override
+    public void effetMelange() {
+        l_melange.setVisible(true);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {}
+        l_melange.setVisible(false);
+    }
+    
+    Jeu jeu;
     BufferedImage img_fc;
     BufferedImage img_coeur;
     BufferedImage img_carreau;

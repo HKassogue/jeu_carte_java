@@ -6,7 +6,6 @@
 package vue;
 
 import controleur.Jeu;
-import java.util.Scanner;
 
 /**
  *
@@ -23,4 +22,5 @@ public interface Vue {
     public void afficherNomJoueur(int pos, String nom); 
     public void afficherFaceCacheCarteJoueur(int i, String nom);
     public void afficherCarteJoueur(int i, String nom, String val, String type);  
+    public void effetMelange();
 }
